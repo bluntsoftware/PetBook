@@ -1,0 +1,101 @@
+<!--
+  Generated template for the NewsfeedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-navbar color="medGreen">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      News Feed
+    </ion-title>
+
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-row>
+      <ion-col col-12 col-sm-10 col-lg-8  col-xl-8>
+        <ion-list>
+          <ion-card>
+            <ion-card-header>
+              <p>Make Post</p>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-avatar *ngIf="auth.account.imgSrc"   item-start>
+                  <img class="postPic" src="{{auth.account.imgSrc}}" >
+                </ion-avatar>
+                <ion-avatar *ngIf="!auth.account.imgSrc" item-start>
+                  <img src="assets/imgs/no_pic.jpg">
+                </ion-avatar>
+
+                <ion-input (keyup.enter)="postMessage()" class="msgInput" type="email" [(ngModel)]="post.message" placeholder="What's on your mind, {{auth.account.firstName}} ?" name="post"></ion-input>
+              </ion-item>
+              <ion-item>
+                <h4>Image Preview</h4>
+                <img *ngIf="myPhoto" class="img-responsive" [src]="myPhoto"/>
+              </ion-item>
+         <!--     <button ion-button (click)="takePhoto()" color="medGreen">Take Photo</button>
+              <button ion-button (click)="selectPhoto()" color="medGreen">Select Photo</button>
+-->
+              <input  style="display: none" type="file" accept="image/*" (change)="changeListener($event)" #fileInput>
+              <button style="margin-left:30px" ion-button (click)="fileInput.click()" color="medGreen">Picture</button>
+
+              <button ion-button (click)="postMessage()" color="medGreen">Share</button>
+            </ion-card-content>
+          </ion-card>
+        </ion-list>
+        <ion-list>
+          <ion-card color="postBox" *ngFor="let feedData of feed">
+            <ion-card-header >
+              <ion-item color="postAvatar">
+                <ion-avatar item-start>
+                  <img class="feedPic" src="{{config.url}}/assets/ProfilePics/{{feedData.user_info.email}}.png" (error)="updateUrl($event)" >
+                </ion-avatar>
+                <ion-label end>
+                  <h2>{{feedData.user_info.firstName}} {{feedData.user_info.lastName}} shared a post</h2>
+                  <p>{{feedData.createDate | amTimeAgo}}</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <img *ngIf="feedData.imgPath" class="img-responsive" src="{{config.url}}/assets{{feedData.imgPath}}"/>
+              </ion-item>
+
+            </ion-card-header>
+            <ion-card-content>
+              <p class="message">{{feedData.message}}</p>
+              <ion-item>
+                <button ion-button color="medBlue" item-start>Like</button>
+                <ion-input #comment style="height: 60px;font-size: 22px" type="email" (keyup.enter)="postComment(feedData, comment.value )"  placeholder="comment" name="comment"></ion-input>
+              </ion-item>
+              <ion-card *ngFor="let comment of feedData.comments">
+                 <ion-card-content>
+                  <ion-item text-wrap color="commentAvatar" >
+                    <ion-avatar item-start>
+                      <img class="commentPic" src="{{config.url}}/assets/ProfilePics/{{comment.user_info.email}}.png" (error)="updateUrl($event)" >
+                    </ion-avatar>
+                    <p>{{comment.user_info.firstName}} {{comment.user_info.lastName}} - {{comment.message}}</p>
+                  </ion-item>
+                   <p>{{comment.createDate | amTimeAgo}}</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-card-content>
+          </ion-card>
+        </ion-list>
+        <ion-list>
+          <ion-card>
+          </ion-card>
+        </ion-list>
+      </ion-col>
+      <ion-col col-sm-2 col-lg-4 col-xl-4>
+
+      </ion-col>
+    </ion-row>
+</ion-content>

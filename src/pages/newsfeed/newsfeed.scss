@@ -1,0 +1,39 @@
+page-newsfeed {
+
+  .message{
+    padding-left: 50px;
+  }
+  .postPic  {
+    width: 100% !important;
+    height : 100% !important;
+    max-width: 65px !important;  //any size
+    max-height: 65px !important; //any size
+  }
+
+  .feedPic  {
+    width: 100% !important;
+    height : 100% !important;
+    max-width: 55px !important;  //any size
+    max-height: 55px !important; //any size
+  }
+
+  .commentPic  {
+    width: 100% !important;
+    height : 100% !important;
+    max-width: 45px !important;  //any size
+    max-height: 45px !important; //any size
+  }
+
+  .msgInput{
+   height: 40px;
+   font-size: 22px;
+  }
+
+  @media screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2){
+    .msgInput{
+      height: 20px;
+      font-size: 14px;
+    }
+
+  }
+}
