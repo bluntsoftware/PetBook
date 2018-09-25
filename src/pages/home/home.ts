@@ -19,7 +19,6 @@ export class HomePage {
     email:''
   };
 
-
   constructor(public navCtrl: NavController,public auth: Auth,public iglue:IGlue) {
     let that = this;
     this.auth.isAuthenticated().then(()=>{
@@ -36,13 +35,12 @@ export class HomePage {
       },
       (err) => {
         alert(err.statusText);
-
       });
   }
   doSignup() {
 
     this.iglue.userService.register(this.signup).then((data)=>{
-      alert("Check you email to activate your account");
+      alert("Check your email to activate your account");
     }).catch((response)=>{
       this.navCtrl.push(HomePage);
       // Unable to sign up

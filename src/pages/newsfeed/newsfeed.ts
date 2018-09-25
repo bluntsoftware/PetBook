@@ -2,15 +2,6 @@ import { Component } from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
 
-
-
-/**
- * Generated class for the NewsfeedPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-newsfeed',
@@ -19,12 +10,9 @@ import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
 export class NewsfeedPage {
   post:any = {message:''};
   feed:any[];
-
-  error:any;
   myPhoto:any;
   loading:any;
   file:File;
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public auth:Auth,public conduit:Conduit,
@@ -47,9 +35,7 @@ export class NewsfeedPage {
 
   readThis(files: FileList): void {
     this.file  = files.item(0);
-
     let myReader:FileReader = new FileReader();
-
     myReader.onloadend = (e) => {
       this.myPhoto = myReader.result;
     };
@@ -64,7 +50,6 @@ export class NewsfeedPage {
     return 0;
   }
   postComment(post,message){
-
     let comment = {};
     comment['message'] = message;
     comment['postId'] = post._id;
@@ -77,7 +62,6 @@ export class NewsfeedPage {
     }
   }
   comments(post){
-
     const listParams:any = {
       'sidx':'createDate',
       'sord':'DESC',
@@ -86,7 +70,6 @@ export class NewsfeedPage {
         'postId':post._id
       })
     };
-
     this.conduit.collection("comment").query(listParams).toPromise().then((data)=>{
       try{
          post['comments'] = data.rows;
@@ -101,11 +84,9 @@ export class NewsfeedPage {
     });
   }
   list(){
-
     this.loading = this.loadingCtrl.create({
          content: 'gathering posts...'
     });
-
     this.loading.present();
     this.conduit.collection("petfeed").list().then((data)=>{
       try{
@@ -142,10 +123,5 @@ export class NewsfeedPage {
         this.postIt();
       }
     }
-
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewsfeedPage');
-  }
-
 }

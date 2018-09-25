@@ -17,7 +17,6 @@ import {Auth, IGlue} from "@bluntsoftware/iglue";
 })
 export class ProfilePage {
   profile:any ={};
-
   constructor(public navCtrl: NavController,
               public navParams:NavParams,
               public auth:Auth,
@@ -27,18 +26,12 @@ export class ProfilePage {
   public updateUrl(event){
     event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
-  }
-
   changeListener($event) : void {
     this.readThis($event.target);
   }
-
   readThis(inputValue: any): void {
     let file:File = inputValue.files[0];
     let myReader:FileReader = new FileReader();
-
     myReader.onloadend = (e) => {
       this.profile.imgSrc = myReader.result;
     };

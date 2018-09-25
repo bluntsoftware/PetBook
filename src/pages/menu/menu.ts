@@ -22,16 +22,12 @@ export class MenuPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:Auth) {
     let that = this;
     this.auth.isAuthenticated().then(()=>{
-
     }).catch(()=>{
       that.navCtrl.setRoot(HomePage);
     });
   }
   open(pageName){
       this.root = pageName;
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPage');
   }
   logout(){
     this.auth.logout().then((msg)=>{

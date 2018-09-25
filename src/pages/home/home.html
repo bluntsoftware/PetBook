@@ -1,6 +1,5 @@
 <ion-header>
   <ion-navbar color="medGreen">
-
     <ion-title>
       <img height="30px" src="../assets/imgs/pet.png"/>
       petbook
@@ -8,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content no-padding >
+<ion-content no-padding>
   <ion-segment class="banner" padding>
     <i>A place where your pets can share their experiences with humans and meet new friends.</i>
   </ion-segment>
@@ -19,12 +18,10 @@
         <form (submit)="doLogin()">
           <ion-list>
             <ion-item>
-              <ion-label fixed>Email</ion-label>
-              <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+              <ion-input placeholder="Email" type="email" [(ngModel)]="account.email" name="email"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label fixed>Password</ion-label>
-              <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+              <ion-input placeholder="Password" type="password" [(ngModel)]="account.password" name="password"></ion-input>
             </ion-item>
             <div padding>
               <button ion-button color="medGreen" block>LOGIN</button>
@@ -37,22 +34,17 @@
         <p>It’s free and always will be.</p>
         <form (submit)="doSignup()">
           <ion-list>
-
             <ion-item>
-              <ion-label fixed>First Name</ion-label>
-              <ion-input type="text" [(ngModel)]="signup.firstName" name="firstName"></ion-input>
+              <ion-input placeholder="First Name" type="text" [(ngModel)]="signup.firstName" name="firstName"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label fixed>Last Name</ion-label>
-              <ion-input type="text" [(ngModel)]="signup.lastName" name="lastName"></ion-input>
+              <ion-input placeholder="Last Name" type="text" [(ngModel)]="signup.lastName" name="lastName"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label fixed>Email</ion-label>
-              <ion-input type="text" [(ngModel)]="signup.email" name="email"></ion-input>
+              <ion-input placeholder="Email" type="text" [(ngModel)]="signup.email" name="email"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label fixed>Password</ion-label>
-              <ion-input type="password" [(ngModel)]="signup.password" name="password"></ion-input>
+              <ion-input placeholder="Password" type="password" [(ngModel)]="signup.password" name="password"></ion-input>
             </ion-item>
             <div padding>
               <button ion-button color="medGreen" block>SIGNUP</button>
@@ -62,5 +54,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
