@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "PetBook",
+  "short_name": "PetBook",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

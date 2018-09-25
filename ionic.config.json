@@ -1,5 +1,7 @@
 {
   "name": "PetBook",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
