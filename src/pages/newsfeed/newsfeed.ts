@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
-import {HomePage} from "../home/home";
+
 
 
 /**

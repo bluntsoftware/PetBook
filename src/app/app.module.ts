@@ -9,9 +9,6 @@ import {IGlueClientModule, IGlueConfig} from "@bluntsoftware/iglue";
 import {MomentModule} from "angular2-moment";
 import {NewsfeedPageModule} from "../pages/newsfeed/newsfeed.module";
 
-
-//Native
-
 const url = 'https://petbook.bluntsoftware.com/PetBook';
 @NgModule({
   declarations: [
@@ -25,7 +22,6 @@ const url = 'https://petbook.bluntsoftware.com/PetBook';
     HttpClientModule,
     MomentModule,
     NewsfeedPageModule
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
