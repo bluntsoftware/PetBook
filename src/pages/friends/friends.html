@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="medGreen">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -23,8 +23,8 @@
           <img class="postPic" src="{{baseUrl}}/assets/ProfilePics/{{friend.email}}.png" (error)="updateUrl($event)">
         </ion-avatar>
         <h3>{{friend.firstName}} {{friend.lastName}} {{friend.state}}</h3>
-        <button ion-button (click)="acceptFriendRequest(friend)">Confirm Friend</button>
-        <button ion-button (click)="removeFriend(friend)">Remove Friend</button>
+        <button ion-button (click)="acceptFriendRequest(friend)" color="medGreen">Confirm Friend</button>
+        <button ion-button (click)="removeFriend(friend)"  color="warning">Remove Friend</button>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -36,7 +36,7 @@
           <img class="postPic" src="{{baseUrl}}/assets/ProfilePics/{{friend.email}}.png" (error)="updateUrl($event)">
         </ion-avatar>
         <h3>{{friend.firstName}} {{friend.lastName}} {{friend.state}}</h3>
-        <button ion-button (click)="removeFriend(friend)">Remove Friend</button>
+        <button ion-button (click)="removeFriend(friend)" color="warning">Remove Friend</button>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -48,7 +48,7 @@
           <img class="postPic" src="{{baseUrl}}/assets/ProfilePics/{{friend.email}}.png" (error)="updateUrl($event)">
         </ion-avatar>
         <h3>{{friend.firstName}} {{friend.lastName}} {{friend.state}}</h3>
-        <button ion-button (click)="removeFriend(friend)">Remove Friend</button>
+        <button ion-button (click)="removeFriend(friend)" color="warning">Remove Friend</button>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -62,7 +62,7 @@
           </ion-avatar>
           <h2>{{user.firstName}} {{user.lastName}}</h2>
           <p>{{user.login}}</p>
-          <button ion-button (click)="requestFriend(user)">Add Friend</button>
+          <button ion-button (click)="requestFriend(user)" color="medGreen">Add Friend</button>
         </ion-item>
       </ion-col>
     </div >
