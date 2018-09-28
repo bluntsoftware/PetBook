@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Auth, Conduit, IGlue, IGlueConfig} from "@bluntsoftware/iglue";
-import {Observable} from "rxjs/Observable";
+
 
 /**
  * Generated class for the FriendsPage page.

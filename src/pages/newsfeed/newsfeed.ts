@@ -1,5 +1,5 @@
-import {Component, NgZone} from '@angular/core';
-import {Events, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import { IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
 import {Observable} from "rxjs/Observable";
 
