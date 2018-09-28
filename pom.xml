@@ -54,9 +54,9 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <username>antsle</username>
-          <password>stud1o</password>
-          <url>https://petbook.bluntsoftware.com/manager/text</url>
+          <username>AdminIGlueUserName</username>
+          <password>AdminIGluePassword</password>
+          <url>https://IGlueURL/manager/text</url>
           <path>/${project.build.finalName}</path>
         </configuration>
       </plugin>
