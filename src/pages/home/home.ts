@@ -21,12 +21,11 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,public auth: Auth,public iglue:IGlue) {
     let that = this;
-    this.auth.isAuthenticated().then(()=>{
+    if(this.auth.authenticated){
       that.navCtrl.setRoot('MenuPage');
-    }).catch(()=>{
-
-    });
+    }
   }
+
   doLogin() {
     const that = this;
     this.auth.login(this.account.email,this.account.password).then(
@@ -38,13 +37,10 @@ export class HomePage {
       });
   }
   doSignup() {
-
     this.iglue.userService.register(this.signup).then((data)=>{
       alert("Check your email to activate your account");
     }).catch((response)=>{
       this.navCtrl.push(HomePage);
-      // Unable to sign up
-      //console.log(response);
       alert(response.error);
     });
   }

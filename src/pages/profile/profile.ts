@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Auth, IGlue} from "@bluntsoftware/iglue";
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {Auth, IGlue, IGlueConfig} from "@bluntsoftware/iglue";
 
 
 /**
@@ -17,14 +17,24 @@ import {Auth, IGlue} from "@bluntsoftware/iglue";
 })
 export class ProfilePage {
   profile:any ={};
+
   constructor(public navCtrl: NavController,
               public navParams:NavParams,
               public auth:Auth,
-              public iglue:IGlue ) {
-    this.profile = auth.account;
+              public iglue:IGlue ,
+              public config:IGlueConfig,
+              public loadingCtrl: LoadingController) {
+
+    if(this.auth.authenticated){
+      this.profile = auth.account;
+    }
   }
   public updateUrl(event){
-    event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
+    if(event.target.attributes.src.value){
+      event.target.attributes.src.value = this.config.url + "/" +  event.target.attributes.src.value;
+    }else{
+      event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
+    }
   }
   changeListener($event) : void {
     this.readThis($event.target);
@@ -39,7 +49,7 @@ export class ProfilePage {
   }
   save(){
     this.iglue.account().save(this.profile).toPromise().then((data)=>{
-
+      this.navCtrl.setRoot('NewsfeedPage');
     });
   }
 }

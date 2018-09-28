@@ -18,13 +18,11 @@ export class NewsfeedPage {
               public auth:Auth,public conduit:Conduit,
               public config:IGlueConfig,
               public loadingCtrl: LoadingController) {
-    let that = this;
 
-    this.auth.isAuthenticated().then(()=>{
-      that.list();
-    }).catch(()=>{
+    if(this.auth.authenticated){
+      this.list();
+    }
 
-    });
   }
   public updateUrl(event){
     event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
@@ -113,7 +111,6 @@ export class NewsfeedPage {
         let formData: FormData = new FormData();
         formData.append('file', this.file);
         this.conduit.collection("petfeed").upload(formData).toPromise().then((data)=> {
-          console.log(data);
           this.file = null;
           this.myPhoto = null;
           this.post['imgPath'] = data.result[0].filepath;

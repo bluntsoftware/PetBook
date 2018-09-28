@@ -21,10 +21,9 @@ export class MenuPage {
   root: any = NewsfeedPage;
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:Auth) {
     let that = this;
-    this.auth.isAuthenticated().then(()=>{
-    }).catch(()=>{
+    if(!auth.authenticated){
       that.navCtrl.setRoot(HomePage);
-    });
+    }
   }
   open(pageName){
       this.root = pageName;

@@ -19,7 +19,7 @@
             <ion-card-content>
               <ion-item>
                 <ion-avatar *ngIf="auth.account.imgSrc"   item-start>
-                  <img class="postPic" src="{{auth.account.imgSrc}}" >
+                  <img class="postPic" src="{{config.url}}/{{auth.account.imgSrc}}" >
                 </ion-avatar>
                 <ion-avatar *ngIf="!auth.account.imgSrc" item-start>
                   <img src="assets/imgs/no_pic.jpg">
