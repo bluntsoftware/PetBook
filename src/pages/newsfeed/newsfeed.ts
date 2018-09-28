@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {Component, NgZone} from '@angular/core';
+import {Events, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
+import {Observable} from "rxjs/Observable";
 
 @IonicPage()
 @Component({
@@ -9,7 +10,7 @@ import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
 })
 export class NewsfeedPage {
   post:any = {message:''};
-  feed:any[];
+  feed: Observable<any[]>;
   myPhoto:any;
   loading:any;
   file:File;
@@ -52,10 +53,10 @@ export class NewsfeedPage {
     comment['message'] = message;
     comment['postId'] = post._id;
     comment['createDate'] = new Date();
-
     if(message){
-      this.conduit.collection("comment").save(comment).toPromise().then((data)=>{
-        this.list();
+      this.conduit.collection("comment").save(comment).subscribe((data) => {
+
+         this.list();
       });
     }
   }
@@ -68,7 +69,7 @@ export class NewsfeedPage {
         'postId':post._id
       })
     };
-    this.conduit.collection("comment").query(listParams).toPromise().then((data)=>{
+    this.conduit.collection("comment").query(listParams).subscribe((data) => {
       try{
          post['comments'] = data.rows;
       }catch(err){
@@ -86,7 +87,7 @@ export class NewsfeedPage {
          content: 'gathering posts...'
     });
     this.loading.present();
-    this.conduit.collection("petfeed").list().then((data)=>{
+    this.conduit.collection("petfeed").query().subscribe((data) => {
       try{
         this.feed = data.rows;
         this.getComments();
@@ -95,9 +96,10 @@ export class NewsfeedPage {
         alert(err);
       }
     });
+
   }
   postIt(){
-    this.conduit.collection("petfeed").save(this.post).toPromise().then((data)=>{
+    this.conduit.collection("petfeed").save(this.post).subscribe((data) => {
       this.list();
       this.post = {message:''};
     });
@@ -110,7 +112,7 @@ export class NewsfeedPage {
       if(this.file){
         let formData: FormData = new FormData();
         formData.append('file', this.file);
-        this.conduit.collection("petfeed").upload(formData).toPromise().then((data)=> {
+        this.conduit.collection("petfeed").upload(formData).subscribe((data) => {
           this.file = null;
           this.myPhoto = null;
           this.post['imgPath'] = data.result[0].filepath;
