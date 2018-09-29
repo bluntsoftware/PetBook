@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-avatar item-start>
-    <img class="profilePic" src="{{profile.imgSrc}}" (error)="updateUrl($event)" >
+    <img class="profilePic" [src]="profilePic()" (error)="updateUrl($event)" >
     <input  style="display: none" type="file" accept="image/*" (change)="changeListener($event)" #fileInput>
     <button style="margin-left:30px" ion-button (click)="fileInput.click()" color="medGreen">Picture</button>
   </ion-avatar>

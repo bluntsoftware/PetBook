@@ -39,14 +39,19 @@
         <ion-list>
           <ion-card color="postBox"  *ngFor="let feedData of feed">
             <ion-card-header >
+
               <ion-item color="postAvatar">
                 <ion-avatar item-start>
                   <img class="feedPic" src="{{config.url}}/assets/ProfilePics/{{feedData.user_info.email}}.png" (error)="updateUrl($event)" >
+
                 </ion-avatar>
                 <ion-label end>
+                  <button *ngIf="auth.hasRole('ROLE_ADMIN')" ion-button (click)="removePost(feedData._id)" float-right><ion-icon name="trash"></ion-icon></button>
                   <h2>{{feedData.user_info.firstName}} {{feedData.user_info.lastName}} shared a post</h2>
                   <p>{{feedData.createDate | amTimeAgo}}</p>
+
                 </ion-label>
+
               </ion-item>
               <ion-item>
                 <img *ngIf="feedData.imgPath" class="img-responsive" src="{{config.url}}/assets{{feedData.imgPath}}"/>

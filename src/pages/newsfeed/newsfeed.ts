@@ -3,6 +3,7 @@ import { IonicPage, LoadingController, NavController, NavParams} from 'ionic-ang
 import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
 import {Observable} from "rxjs/Observable";
 
+
 @IonicPage()
 @Component({
   selector: 'page-newsfeed',
@@ -10,13 +11,14 @@ import {Observable} from "rxjs/Observable";
 })
 export class NewsfeedPage {
   post:any = {message:''};
-  feed: Observable<any[]>;
+  feed:Observable<any[]>;
   myPhoto:any;
   loading:any;
   file:File;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public auth:Auth,public conduit:Conduit,
+              public auth:Auth,
+              public conduit:Conduit,
               public config:IGlueConfig,
               public loadingCtrl: LoadingController) {
 
@@ -34,6 +36,7 @@ export class NewsfeedPage {
 
   readThis(files: FileList): void {
     this.file  = files.item(0);
+
     let myReader:FileReader = new FileReader();
     myReader.onloadend = (e) => {
       this.myPhoto = myReader.result;
@@ -55,7 +58,6 @@ export class NewsfeedPage {
     comment['createDate'] = new Date();
     if(message){
       this.conduit.collection("comment").save(comment).subscribe((data) => {
-
          this.list();
       });
     }
@@ -71,7 +73,7 @@ export class NewsfeedPage {
     };
     this.conduit.collection("comment").query(listParams).subscribe((data) => {
       try{
-         post['comments'] = data.rows;
+         post['comments'] = data['rows'];
       }catch(err){
         alert(err);
       }
@@ -82,26 +84,36 @@ export class NewsfeedPage {
         this.comments(post);
     });
   }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad NewsfeedPage');
+  }
+
   list(){
     this.loading = this.loadingCtrl.create({
          content: 'gathering posts...'
     });
     this.loading.present();
     this.conduit.collection("petfeed").query().subscribe((data) => {
-      try{
-        this.feed = data.rows;
-        this.getComments();
-        this.loading.dismiss();
-      }catch(err){
-        alert(err);
-      }
+        try{
+          this.loading.dismiss();
+          this.feed = data['rows'];
+          window.setTimeout(()=>{
+            this.getComments();
+          },500);
+        }catch(err){
+          alert(err);
+        }
     });
-
+  }
+  removePost(id:string){
+    this.conduit.collection("petfeed").remove(id).subscribe(()=>{
+      this.list();
+    });
   }
   postIt(){
     this.conduit.collection("petfeed").save(this.post).subscribe((data) => {
-      this.list();
       this.post = {message:''};
+      this.list();
     });
   }
   postMessage(){

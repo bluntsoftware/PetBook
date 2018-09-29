@@ -29,12 +29,17 @@ export class ProfilePage {
       this.profile = auth.account;
     }
   }
-  public updateUrl(event){
-    if(event.target.attributes.src.value){
-      event.target.attributes.src.value = this.config.url + "/" +  event.target.attributes.src.value;
-    }else{
-      event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
+  public profilePic(){
+    let pic = this.profile.imgSrc;
+    if(!pic){
+      return "assets/imgs/no_pic.jpg";
+    }else if(pic.startsWith("assets")){
+      return this.config.url + "/" +  pic;
     }
+    return pic;
+  }
+  public updateUrl(event){
+      event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
   }
   changeListener($event) : void {
     this.readThis($event.target);
@@ -51,5 +56,8 @@ export class ProfilePage {
     this.iglue.account().save(this.profile).toPromise().then((data)=>{
       this.navCtrl.setRoot('NewsfeedPage');
     });
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilePage');
   }
 }
