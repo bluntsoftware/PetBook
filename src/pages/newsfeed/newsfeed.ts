@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Auth, Conduit, IGlueConfig} from '@bluntsoftware/iglue';
-import {Observable} from "rxjs/Observable";
+
 
 
 @IonicPage()
@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 })
 export class NewsfeedPage {
   post:any = {message:''};
-  feed:Observable<any[]>;
+  feed:any[];
   myPhoto:any;
   loading:any;
   file:File;
@@ -20,7 +20,7 @@ export class NewsfeedPage {
               public auth:Auth,
               public conduit:Conduit,
               public config:IGlueConfig,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController ) {
 
     if(this.auth.authenticated){
       this.list();
@@ -72,17 +72,16 @@ export class NewsfeedPage {
       })
     };
     this.conduit.collection("comment").query(listParams).subscribe((data) => {
-      try{
-         post['comments'] = data['rows'];
-      }catch(err){
-        alert(err);
-      }
+      post['comments'] = data['rows'];
+    },(err)=>{
+      alert(err);
     });
   }
-  getComments(){
-    this.feed.forEach((post)=>{
-        this.comments(post);
+  getComments() {
+    this.feed.forEach((post) => {
+      this.comments(post);
     });
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsfeedPage');
@@ -94,15 +93,12 @@ export class NewsfeedPage {
     });
     this.loading.present();
     this.conduit.collection("petfeed").query().subscribe((data) => {
-        try{
-          this.loading.dismiss();
-          this.feed = data['rows'];
-          window.setTimeout(()=>{
-            this.getComments();
-          },500);
-        }catch(err){
-          alert(err);
-        }
+      this.loading.dismiss();
+      this.feed = data['rows'];
+      this.getComments();
+    },error => {
+      this.loading.dismiss();
+      alert(error);
     });
   }
   removePost(id:string){
@@ -113,7 +109,7 @@ export class NewsfeedPage {
   postIt(){
     this.conduit.collection("petfeed").save(this.post).subscribe((data) => {
       this.post = {message:''};
-      this.list();
+      this.feed.unshift(data);
     });
   }
   postMessage(){

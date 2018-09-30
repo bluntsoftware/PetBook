@@ -8,13 +8,13 @@
 importScripts('./build/sw-toolbox.js');
 
 self.toolbox.options.cache = {
-  name: 'ionic-cache'
+  name: 'petbook-1.0'
 };
 
 // pre-cache our key assets
 self.toolbox.precache(
   [
-    './build/main.js',
+    /*'./build/main.js',*/
     './build/vendor.js',
     './build/main.css',
     './build/polyfills.js',
