@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {IGlueConfig} from "@bluntsoftware/iglue";
 
 /**
  * Generated class for the UserFormPage page.
@@ -18,7 +19,7 @@ export class UserFormPage {
   public model:any = {};
   form:FormGroup;
   isReadyToSave:boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,formBuilder: FormBuilder,public config:IGlueConfig) {
     this.model = navParams.get('item');
     if(!this.model){
       this.model = {};
@@ -26,7 +27,10 @@ export class UserFormPage {
 
     this.form = formBuilder.group({
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      lastName: ['', Validators.required],
+      email:[''],
+      login:['', Validators.required],
+      activated:[false]
     });
 
     // Watch the form for changes, and
@@ -34,7 +38,9 @@ export class UserFormPage {
       this.isReadyToSave = this.form.valid;
     });
   }
-
+  public updateUrl(event){
+    event.target.attributes.src.value ="assets/imgs/no_pic.jpg"
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserFormPage');
   }

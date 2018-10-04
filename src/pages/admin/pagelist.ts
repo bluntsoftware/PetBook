@@ -44,8 +44,12 @@ export abstract class IonicPageList<T>{
     let addModal = this.modalCtrl.create(this.getEditPage(),{'item':item});
     addModal.onDidDismiss(item => {
       if (item) {
-        this.getCollection().save(item).toPromise().then(()=>{
-          this.query();
+        this.getCollection().save(item).toPromise().then((data)=>{
+          if(item._id){
+            this.query();
+          }else{
+            this.items.unshift(data);
+          }
         }).catch((err)=>{
 
         });

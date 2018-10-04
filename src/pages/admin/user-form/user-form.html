@@ -31,15 +31,43 @@
 
 <ion-content padding>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="done()">
+    <ion-row>
+      <ion-col col-12 col-sm col-md-2>
+        <ion-thumbnail item-start padding>
+          <img src="{{config.url}}/assets/ProfilePics/{{model.email}}.png" (error)="updateUrl($event)">
+        </ion-thumbnail>
+        <ion-item>
+          <ion-label stacked>Activated</ion-label>
+          <ion-toggle formControlName="activated" [(ngModel)]="model.activated"></ion-toggle>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm col-md-5>
+        <ion-item>
+          <ion-label floating>First Name</ion-label>
+          <ion-input formControlName="firstName" [(ngModel)]="model.firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Last Name</ion-label>
+          <ion-input formControlName="lastName" [(ngModel)]="model.lastName"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-sm col-md-5>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input formControlName="email" [(ngModel)]="model.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Login</ion-label>
+          <ion-input formControlName="login" [readonly]="true" [(ngModel)]="model.login"></ion-input>
+        </ion-item>
+
+
+      </ion-col>
+
+    </ion-row>
     <ion-list>
-      <ion-item>
-        <ion-label>First Name</ion-label>
-        <ion-input text-center formControlName="firstName" [(ngModel)]="model.firstName" placeholder="FIRST NAME"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Last Name</ion-label>
-        <ion-input text-center formControlName="lastName" [(ngModel)]="model.lastName" placeholder="LAST NAME"></ion-input>
-      </ion-item>
+
+
     </ion-list>
   </form>
 </ion-content>
