@@ -58,7 +58,7 @@ export class NewsfeedPage {
     comment['createDate'] = new Date();
     if(message){
       this.conduit.collection("comment").save(comment).subscribe((data) => {
-         this.list();
+
       });
     }
   }
@@ -85,6 +85,7 @@ export class NewsfeedPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsfeedPage');
+    this.list();
   }
 
   list(){
