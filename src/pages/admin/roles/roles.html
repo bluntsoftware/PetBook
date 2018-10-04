@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="slate" >
+    <button ion-button menuToggle start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <ion-icon name="people"></ion-icon>
+      Roles
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="create()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let role of list()">
+      <button ion-item (click)="open(role)">
+        <ion-label>
+          <h2>{{role.authority}}</h2>
+          <p>{{role.landingPage}}</p>
+        </ion-label>
+      </button>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="remove(role)">
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

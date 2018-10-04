@@ -15,9 +15,31 @@
       </ion-navbar>
     </ion-header>
     <ion-content>
-      <button ion-item (click)="open('NewsfeedPage')" menuClose>News</button>
-      <button ion-item (click)="open('ProfilePage')" menuClose>Profile</button>
-      <button ion-item (click)="open('FriendsPage')" menuClose>Find Friends</button>
+      <button ion-item (click)="open('NewsfeedPage')" menuClose>
+        <ion-icon name="paper" icon-start></ion-icon>
+        News
+      </button>
+      <button ion-item (click)="open('ProfilePage')" menuClose>
+        <ion-icon name="contact" icon-start></ion-icon>
+        Profile
+      </button>
+      <button ion-item (click)="open('FriendsPage')" menuClose>
+        <ion-icon name="contacts" icon-start></ion-icon>
+        Find Friends
+      </button>
+      <div *ngIf="auth.isAdmin()">
+        <ion-item-divider (click)="goToConduit()" color="medGreen">
+          <ion-icon name="lock" icon-start></ion-icon>
+          ADMIN
+        </ion-item-divider>
+        <button ion-item (click)="open('RolesPage')" menuClose>
+          <ion-icon name="people"></ion-icon>
+          Roles
+        </button>
+        <button ion-item (click)="open('UsersPage')" menuClose>
+          <ion-icon name="person"></ion-icon>
+          Users</button>
+      </div>
     </ion-content>
   </ion-menu>
   <ion-nav [root]="root" #content main></ion-nav>

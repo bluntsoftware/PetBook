@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Auth} from "@bluntsoftware/iglue";
+import {Auth, IGlueConfig} from "@bluntsoftware/iglue";
 import {NewsfeedPage} from "../newsfeed/newsfeed";
 import {HomePage} from "../home/home";
 
@@ -19,11 +19,14 @@ import {HomePage} from "../home/home";
 })
 export class MenuPage {
   root: any = NewsfeedPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:Auth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:Auth,public config:IGlueConfig) {
     let that = this;
     if(!auth.authenticated){
       that.navCtrl.setRoot(HomePage);
     }
+  }
+  goToConduit(){
+    window.open(this.config.url + '/#/admin/conduitviewer');
   }
   open(pageName){
       this.root = pageName;
