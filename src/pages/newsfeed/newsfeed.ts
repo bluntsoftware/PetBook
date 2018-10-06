@@ -22,9 +22,7 @@ export class NewsfeedPage {
               public config:IGlueConfig,
               public loadingCtrl: LoadingController ) {
 
-    if(this.auth.authenticated){
-      this.list();
-    }
+
 
   }
   public updateUrl(event){
@@ -58,7 +56,7 @@ export class NewsfeedPage {
     comment['createDate'] = new Date();
     if(message){
       this.conduit.collection("comment").save(comment).subscribe((data) => {
-
+         this.list();
       });
     }
   }
@@ -85,7 +83,9 @@ export class NewsfeedPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsfeedPage');
-    this.list();
+    if(this.auth.authenticated){
+      this.list();
+    }
   }
 
   list(){
