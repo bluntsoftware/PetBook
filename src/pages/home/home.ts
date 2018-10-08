@@ -43,7 +43,7 @@ export class HomePage {
       alert(response.error);
     });
   }
-  validateEmail(data) {
+  static validateEmail(data) {
     if( /(.+)@(.+){2,}\.(.+){2,}/.test(data.email) ){
       return {
         isValid: true,
@@ -65,7 +65,7 @@ export class HomePage {
         { text: 'Cancel', role: 'cancel', handler: () => {
         }},
         { text: 'Ok', handler:(data) => {
-            let validation = this.validateEmail(data);
+            let validation = HomePage.validateEmail(data);
             if (!validation.isValid) {
               alertCtrl.setMessage(validation.message);
               return false;
