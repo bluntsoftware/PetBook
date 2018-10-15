@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
-import {Auth, IGlue} from '@bluntsoftware/iglue';
+import {Auth, IGlue, IGlueConfig} from '@bluntsoftware/iglue';
 
 @Component({
   selector: 'page-home',
@@ -18,13 +18,16 @@ export class HomePage {
     email:''
   };
 
-  constructor(public navCtrl: NavController,public auth: Auth,public iglue:IGlue,public alertCtrl:AlertController) {
+  constructor(public navCtrl: NavController,public config:IGlueConfig,public auth: Auth,public iglue:IGlue,public alertCtrl:AlertController) {
     let that = this;
     if(this.auth.authenticated){
       that.navCtrl.setRoot('MenuPage');
     }
   }
 
+  googleLogin(){
+    this.auth.loginGoogle();
+  }
   doLogin() {
     const that = this;
     this.auth.login(this.account.email,this.account.password).then(

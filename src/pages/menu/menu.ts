@@ -34,8 +34,6 @@ export class MenuPage {
   logout(){
     this.auth.logout().then((msg)=>{
       this.navCtrl.setRoot(HomePage);
-    }).catch((err)=>{
-
-    });
+    }).catch((err)=>{});
   }
 }

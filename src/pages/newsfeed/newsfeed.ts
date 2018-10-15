@@ -72,7 +72,7 @@ export class NewsfeedPage {
     this.conduit.collection("comment").query(listParams).subscribe((data) => {
       post['comments'] = data['rows'];
     },(err)=>{
-      alert(err);
+      console.log(err);
     });
   }
   getComments() {
@@ -99,7 +99,7 @@ export class NewsfeedPage {
       this.getComments();
     },error => {
       this.loading.dismiss();
-      alert(error);
+      console.log(error);
     });
   }
   removePost(id:string){

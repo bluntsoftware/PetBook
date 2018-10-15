@@ -26,9 +26,23 @@
             <div padding>
               <button ion-button color="medGreen" block>LOGIN</button>
             </div>
+
           </ion-list>
         </form>
-        <button ion-button (click)="forgotPassword()">Forgot Password</button>
+        <ion-list>
+          <ion-item>
+            <!--
+            <div padding>
+              <button ion-button color="medGreen"  (click)="googleLogin()" block><ion-icon name="google">
+              </ion-icon>Google</button>
+            </div> -->
+          </ion-item>
+          <ion-item>
+            <button ion-button (click)="forgotPassword()">Forgot Password</button>
+          </ion-item>
+        </ion-list>
+
+
       </ion-col>
       <ion-col>
         <h2>Create a New Account</h2>
