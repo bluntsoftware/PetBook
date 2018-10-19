@@ -1,3 +1,40 @@
 page-user-form {
+  .au-form{
+
+    p {
+      font-size: 1em;
+    }
+    h3 {
+      font-size: 1.2em;
+      color: #6e6e6e;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .item-toggle {
+      background-color: white;
+      border: none;
+      color: rgb(50, 50, 50);
+      padding: 0;
+    }
+    .item-input {
+      background-color: white;
+      border-color: darkgray;
+      border-width: 1px !important;
+      border-style: solid;
+      color: rgb(50, 50, 50);
+      padding: 0;
+      border-radius: 30px !important;
+    }
+    .item-select {
+      background-color: white;
+      border-color: darkgray;
+      border-width: 1px !important;
+      border-style: solid;
+      color: rgb(50, 50, 50);
+      padding: 0;
+      border-radius: 10px;
+    }
+
+  }
 
 }

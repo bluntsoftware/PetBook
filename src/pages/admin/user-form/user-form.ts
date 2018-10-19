@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {IGlueConfig} from "@bluntsoftware/iglue";
+import {IGlue, IGlueConfig} from "@bluntsoftware/iglue";
 
 /**
  * Generated class for the UserFormPage page.
@@ -17,9 +17,10 @@ import {IGlueConfig} from "@bluntsoftware/iglue";
 })
 export class UserFormPage {
   public model:any = {};
+  public password = null;
   form:FormGroup;
   isReadyToSave:boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,formBuilder: FormBuilder,public config:IGlueConfig) {
+  constructor(public iglue:IGlue,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,formBuilder: FormBuilder,public config:IGlueConfig) {
     this.model = navParams.get('item');
     if(!this.model){
       this.model = {};
@@ -43,6 +44,17 @@ export class UserFormPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserFormPage');
+  }
+  public changePasswordByLogin(password){
+    if(this.model.login && password){
+      this.iglue.user().changePasswordByLogin(this.model.login,password).then(()=>{
+        alert("Password Changed for " + this.model.login);
+      }).catch((err)=>{
+        alert(err.error.message);
+      });
+    }else{
+      alert("login not found");
+    }
   }
   cancel() {
     this.viewCtrl.dismiss();

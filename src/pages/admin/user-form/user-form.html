@@ -67,4 +67,10 @@
     </ion-row>
 
   </form>
+  <ion-list class="au-form" inset padding>
+    <ion-item>
+      <ion-input  [(ngModel)]="password" type="password" name="newpassword"></ion-input>
+      <button ion-button  (click)="changePasswordByLogin(password)" clear item-right>Change Password</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
